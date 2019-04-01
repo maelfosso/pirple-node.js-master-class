@@ -41,7 +41,7 @@ var server = http.createServer(function(req, res) {
       'headers': headers,
       'payload': buffer
     };
-    
+
     // Route the request to the choosen handler specified in the router
     choosenHandler(data, function(statusCode, payload) {
       // Use the status code call back by the handler or default to 200
@@ -54,6 +54,7 @@ var server = http.createServer(function(req, res) {
       var payloadString = JSON.stringify(payload);
 
       // Return the response
+      res.setHeader("Content-Type", 'application/json');
       res.writeHead(statusCode);
       res.end(payloadString);
 
